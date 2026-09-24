@@ -1,0 +1,11 @@
+{
+  "profiles": [
+    {
+      "profile_id": "custom_pwg_raster",
+      "display_name": "Custom PWG Raster printer",
+      "output_suffix": ".pwg",
+      "print_format": "pwg_raster",
+      "command": "tmp=\"{output}.cups\"; gs -dBATCH -dSAFER -dNOPAUSE -sDEVICE=cups -r{dpi} -sOutputFile=\"$tmp\" -c \"<</cupsColorSpace 18/cupsBitsPerColor 8/cupsColorOrder 0>>setpagedevice\" -f \"{source}\" && FINAL_CONTENT_TYPE=image/pwg-raster /usr/lib/cups/filter/rastertopwg 1 root \"{source}\" 1 \"media={paper_size} print-color-mode=monochrome printer-resolution={dpi}dpi\" \"$tmp\" > \"{output}\"; status=$?; rm -f \"$tmp\"; exit $status"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Runtime data
+cloud/storage/
+box_downloads/
+*.sqlite3
+*.db
+*.log
+
+# Local config and secrets
+.env
+*.local.json
+box_config.json
+box_printer_cache.json
+
+# WeChat devtools local state
+miniprogram/project.private.config.json
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

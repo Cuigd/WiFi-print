@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/upload/upload",
+    "pages/material/material",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarTitleText": "济豪云盒",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#f7f8fa",
+    "backgroundColor": "#f7f8fa"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

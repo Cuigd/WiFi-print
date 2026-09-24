@@ -1,0 +1,42 @@
+<view class="safe-page upload-page">
+  <view class="soft-card upload-card">
+    <view class="upload-head">
+      <text class="upload-title">{{modeTitle}}</text>
+      <text class="upload-subtitle">{{boundPrinter ? ('打印机：' + boundPrinter.name) : '选择文件后开始打印'}}</text>
+    </view>
+
+    <view class="file-box" bindtap="chooseFile">
+      <view class="file-icon">{{fileName ? '✓' : '+'}}</view>
+      <view class="file-text">
+        <text class="file-name">{{fileName || '选择文件'}}</text>
+        <text class="file-tip">{{fileTip}}</text>
+      </view>
+    </view>
+
+    <view class="setting-row">
+      <text>打印份数</text>
+      <view class="stepper">
+        <button class="step-btn" bindtap="minusCopies" disabled="{{uploading || copies <= 1}}">-</button>
+        <text class="copies">{{copies}}</text>
+        <button class="step-btn" bindtap="plusCopies" disabled="{{uploading}}">+</button>
+      </view>
+    </view>
+
+    <view class="setting-row">
+      <text>纸张类型</text>
+      <view class="paper-tabs">
+        <view class="paper-tab {{paperSize === 'A4' ? 'active' : ''}}" data-size="A4" bindtap="selectPaper">A4</view>
+        <view class="paper-tab {{paperSize === 'A3' ? 'active' : ''}}" data-size="A3" bindtap="selectPaper">A3</view>
+      </view>
+    </view>
+
+    <button class="btn btn-primary upload-btn" bindtap="uploadFile" loading="{{uploading}}" disabled="{{!filePath || uploading}}">
+      {{uploading ? '提交中' : '开始打印'}}
+    </button>
+
+    <view wx:if="{{resultText}}" class="result-box">
+      <text class="result-label">{{resultText}}</text>
+      <text class="result-value">任务已发送到绑定打印机</text>
+    </view>
+  </view>
+</view>

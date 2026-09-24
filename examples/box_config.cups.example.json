@@ -1,0 +1,21 @@
+{
+  "_modification_note": "Example config for a WiFi print box using a local CUPS queue.",
+  "server_url": "http://YOUR_CLOUD_SERVER_IP:8080",
+  "device_id": "your-box-id",
+  "device_token": "replace-with-token-from-register-api",
+  "job_transport": "mqtt",
+  "mqtt": {
+    "host": "YOUR_CLOUD_SERVER_IP",
+    "port": 1883,
+    "username": "replace-with-mqtt-user",
+    "password": "replace-with-mqtt-password",
+    "topic_prefix": "cloud-print",
+    "keepalive_seconds": 60
+  },
+  "printer_name": "wifi_printer",
+  "printer_command": "lp -d wifi_printer {file}",
+  "wait_for_cups_completion": true,
+  "print_timeout_seconds": 180,
+  "cups_poll_seconds": 2,
+  "cancel_stale_jobs_before_print": false
+}

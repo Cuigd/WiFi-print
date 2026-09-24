@@ -1,0 +1,152 @@
+.upload-page {
+  padding-top: 32rpx;
+}
+
+.upload-card {
+  padding: 34rpx 28rpx 40rpx;
+}
+
+.upload-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  margin-bottom: 30rpx;
+}
+
+.upload-title {
+  font-size: 40rpx;
+  font-weight: 800;
+}
+
+.upload-subtitle {
+  font-size: 26rpx;
+  color: #8a8f98;
+}
+
+.file-box {
+  min-height: 160rpx;
+  border: 2rpx dashed #c7ded8;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 24rpx;
+  background: #f5fbf9;
+}
+
+.file-icon {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  color: #fff;
+  background: #19b69a;
+  font-size: 46rpx;
+  font-weight: 500;
+}
+
+.file-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.file-name {
+  max-width: 540rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.file-tip {
+  font-size: 24rpx;
+  color: #8a8f98;
+}
+
+.setting-row {
+  min-height: 108rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #edf0f2;
+  font-size: 30rpx;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+}
+
+.step-btn {
+  width: 64rpx;
+  height: 64rpx;
+  min-width: 64rpx;
+  padding: 0;
+  border-radius: 50%;
+  color: #1f826f;
+  background: #edf8f5;
+  font-size: 34rpx;
+  line-height: 64rpx;
+}
+
+.copies {
+  width: 44rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.paper-tabs {
+  display: flex;
+  gap: 12rpx;
+}
+
+.paper-tab {
+  width: 96rpx;
+  height: 58rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+  color: #5b6570;
+  background: #f0f2f4;
+  font-size: 26rpx;
+}
+
+.paper-tab.active {
+  color: #fff;
+  background: #19b69a;
+}
+
+.upload-btn {
+  margin-top: 38rpx;
+}
+
+.result-box {
+  margin-top: 24rpx;
+  padding: 22rpx;
+  border-radius: 12rpx;
+  background: #f0faf6;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.result-label {
+  color: #158b72;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.result-value {
+  word-break: break-all;
+  color: #5b6570;
+  font-size: 24rpx;
+}

@@ -1,0 +1,24 @@
+{
+  "_modification_note": "Example config for a CUPS-free IPP/PWG WiFi print box.",
+  "server_url": "http://YOUR_CLOUD_SERVER_IP:8080",
+  "device_id": "your-box-id",
+  "device_name": "IPP Auto Detect Print Box",
+  "device_token": "replace-with-token-from-register-api",
+  "job_transport": "mqtt",
+  "mqtt": {
+    "host": "YOUR_CLOUD_SERVER_IP",
+    "port": 1883,
+    "username": "replace-with-mqtt-user",
+    "password": "replace-with-mqtt-password",
+    "topic_prefix": "cloud-print",
+    "keepalive_seconds": 60
+  },
+  "auto_detect_printer": true,
+  "force_detect_printer": false,
+  "printer_cache_path": "/root/box_printer_cache.json",
+  "print_transport": "ipp",
+  "ipp_printer_uri": "ipp://YOUR_PRINTER_LAN_IP/ipp/print",
+  "ipp_timeout_seconds": 180,
+  "media": "iso_a4_210x297mm",
+  "copies": 1
+}

@@ -1,0 +1,21 @@
+.placeholder-page {
+  padding-top: 32rpx;
+}
+
+.placeholder-card {
+  padding: 36rpx 28rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.placeholder-title {
+  font-size: 38rpx;
+  font-weight: 800;
+}
+
+.placeholder-text {
+  color: #7b838d;
+  font-size: 28rpx;
+  line-height: 42rpx;
+}
