@@ -26,10 +26,9 @@
 ## 目录结构
 
 ```text
-cloud/                 云端服务、转换流水线和管理台
+cloud/                 云端服务和转换流水线
   cloud_server.py      HTTP API、任务调度、设备管理、MQTT 通知
   print_pipeline.py    打印转换 profile，例如 PWG Raster、URF、PCLm
-  admin/dashboard.html 云端管理台
 box/
   box_agent.py         随身 WiFi 小盒子端代理
 miniprogram/           微信小程序上传入口
@@ -49,12 +48,6 @@ export MQTT_PORT=1883
 export MQTT_USERNAME=replace-with-mqtt-user
 export MQTT_PASSWORD=replace-with-mqtt-password
 python3 cloud_server.py
-```
-
-管理台地址：
-
-```text
-http://YOUR_CLOUD_SERVER_IP:8080/admin
 ```
 
 ## 盒子端部署

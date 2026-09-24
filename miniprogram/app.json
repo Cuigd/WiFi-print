@@ -6,7 +6,7 @@
     "pages/profile/profile"
   ],
   "window": {
-    "navigationBarTitleText": "济豪云盒",
+    "navigationBarTitleText": "WiFi 打印",
     "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#f7f8fa",
     "backgroundColor": "#f7f8fa"

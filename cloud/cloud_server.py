@@ -172,10 +172,6 @@ class CloudPrintHandler(BaseHTTPRequestHandler):
         path_parts = [part for part in parsed.path.split("/") if part]
         query = parse_qs(parsed.query)
 
-        if parsed.path in {"/", "/admin", "/admin/"}:
-            self.handle_admin_page()
-            return
-
         if parsed.path == "/health":
             self.send_json({"ok": True})
             return
@@ -213,9 +209,6 @@ class CloudPrintHandler(BaseHTTPRequestHandler):
             return
 
         self.send_error_json(HTTPStatus.NOT_FOUND, "Endpoint not found")
-
-    def handle_admin_page(self) -> None:
-        self.send_html(read_admin_html())
 
     def do_POST(self) -> None:
         parsed = urlparse(self.path)
@@ -635,14 +628,6 @@ class CloudPrintHandler(BaseHTTPRequestHandler):
 
     def log_message(self, fmt: str, *args: object) -> None:
         print(f"[cloud] {self.address_string()} - {fmt % args}")
-
-
-def read_admin_html() -> str:
-    dashboard_path = BASE_DIR / "admin" / "dashboard.html"
-    try:
-        return dashboard_path.read_text(encoding="utf-8")
-    except OSError as exc:
-        return f'<!doctype html><meta charset="utf-8"><title>管理台不可用</title><h1>管理台文件读取失败</h1><p>{exc}</p>'
 
 
 def main() -> None:

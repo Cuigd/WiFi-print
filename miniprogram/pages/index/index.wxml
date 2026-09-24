@@ -1,14 +1,14 @@
 <view class="safe-page home-page">
   <view class="brand-bar">
-    <text class="brand-mark">济豪®</text>
-    <text class="brand-title">济豪云盒</text>
+    <text class="brand-mark">WiFi</text>
+    <text class="brand-title">云打印</text>
   </view>
 
   <view class="soft-card device-card" bindtap="discoverPrinters">
-    <view class="device-logo">济豪®</view>
+    <view class="device-logo">打印</view>
     <view class="device-state">
       <view class="state-line">
-        <text>{{boundPrinter ? '云盒已绑定' : '云盒未绑定'}}</text>
+        <text>{{boundPrinter ? '设备已绑定' : '设备未绑定'}}</text>
         <text class="status-pill {{boundPrinter ? 'online' : ''}}">{{boundPrinter ? '可用' : '待绑定'}}</text>
       </view>
       <view class="state-line">
