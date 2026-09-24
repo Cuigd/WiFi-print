@@ -5,7 +5,7 @@
 ## 工作流程
 
 ```text
-微信小程序/电脑上传文件
+客户端上传文件
   -> 云服务器接收任务并转换为打印机可接收格式
   -> MQTT 通知随身 WiFi 小盒子
   -> 小盒子领取任务并下载 print-ready 文件
@@ -31,7 +31,6 @@ cloud/                 云端服务和转换流水线
   print_pipeline.py    打印转换 profile，例如 PWG Raster、URF、PCLm
 box/
   box_agent.py         随身 WiFi 小盒子端代理
-miniprogram/           微信小程序上传入口
 examples/              云端环境变量和盒子配置样例
 ```
 
@@ -104,6 +103,8 @@ POST /api/jobs
 POST /api/jobs/{job_id}/status
 GET  /api/jobs/{job_id}/file?token=...
 ```
+
+客户端只需要按 `/api/jobs` 的 multipart 表单接口提交文件和打印参数。本仓库不包含前端应用源码。
 
 ## MQTT 主题
 

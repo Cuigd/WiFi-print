@@ -1,6 +1,0 @@
-<view class="safe-page placeholder-page">
-  <view class="soft-card placeholder-card">
-    <text class="placeholder-title">我的</text>
-    <text class="placeholder-text">后续可加入账号登录、设备绑定、上传记录和打印设置。</text>
-  </view>
-</view>
