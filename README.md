@@ -2,7 +2,7 @@
 
 随身 WiFi 小盒子 + WiFi 打印机 + 云端调度的轻量云打印项目。
 
-## 已验证链路
+## 工作流程
 
 ```text
 微信小程序/电脑上传文件
@@ -13,7 +13,7 @@
   -> 云端记录任务状态
 ```
 
-当前已验证的成功路线是：
+核心组件：
 
 - 云端：`cloud/cloud_server.py`
 - 云端转换：`cloud/print_pipeline.py`
@@ -33,11 +33,10 @@ cloud/                 云端服务、转换流水线和管理台
 box/
   box_agent.py         随身 WiFi 小盒子端代理
 miniprogram/           微信小程序上传入口
-docs/                  部署说明、设备管理、MQTT 安全和阶段总结
 examples/              云端环境变量和盒子配置样例
 ```
 
-## 快速启动云端
+## 云端部署
 
 ```bash
 cd cloud
@@ -52,13 +51,13 @@ export MQTT_PASSWORD=replace-with-mqtt-password
 python3 cloud_server.py
 ```
 
-管理台：
+管理台地址：
 
 ```text
 http://YOUR_CLOUD_SERVER_IP:8080/admin
 ```
 
-## 快速启动盒子端
+## 盒子端部署
 
 复制样例配置：
 
@@ -82,6 +81,8 @@ cp examples/box_config.ipp_pwg.example.json box_config.json
 python3 box/box_agent.py --config box_config.json
 ```
 
+盒子首次启动时会读取打印机 IPP 能力，并向云端注册设备。云端返回的 `device_token` 需要写入盒子配置，后续领取任务和下载文件都依赖该 token。
+
 ## 打印机适配方式
 
 项目通过 `printer_profile` 适配不同打印机：
@@ -95,16 +96,42 @@ python3 box/box_agent.py --config box_config.json
 
 新增打印机时优先新增或覆盖 `cloud/printer_profiles.local.json`，不要把机型逻辑写死到业务接口。
 
-## 安全注意
+## 云端接口
+
+```text
+GET  /health
+GET  /api/devices
+GET  /api/devices/{device_id}
+GET  /api/devices/{device_id}/jobs
+GET  /api/devices/{device_id}/files
+GET  /api/printer-profiles
+GET  /api/jobs/{job_id}
+POST /api/devices/register
+POST /api/jobs
+POST /api/jobs/{job_id}/status
+GET  /api/jobs/{job_id}/file?token=...
+```
+
+## MQTT 主题
+
+```text
+cloud-print/{device_id}/jobs    云端通知盒子有新任务
+cloud-print/{device_id}/status  盒子发布在线/离线状态
+```
+
+## 运行数据
+
+云端运行数据保存在：
+
+```text
+cloud/storage/
+```
+
+该目录包含 SQLite 数据库、上传文件和转换后的 print-ready 文件，已经通过 `.gitignore` 排除。
+
+## 安全要求
 
 - 不要提交真实 `device_token`、MQTT 密码、上传 token。
 - 生产环境必须设置 `PRINT_UPLOAD_TOKEN`。
 - MQTT 生产环境建议配置每盒一账号、topic ACL，并升级 TLS 或放进专用内网/VPN。
 - `cloud/storage/` 是运行数据，不应提交到仓库。
-
-## 参考文档
-
-- [外网打印部署说明](docs/EXTERNAL_PRINTING_GUIDE.md)
-- [设备管理和 profile 扩展](docs/CLOUD_DEVICE_MANAGEMENT.md)
-- [MQTT 安全计划](docs/MQTT_SECURITY_PLAN.md)
-- [第一阶段云打印总结](docs/PHASE_1_CLOUD_PRINT_SUMMARY.md)

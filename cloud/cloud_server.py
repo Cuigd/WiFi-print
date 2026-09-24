@@ -1,4 +1,4 @@
-# [Modification] Added admin dashboard, device management APIs, and MQTT job notifications.
+# [Modification] Production cleanup: require registered devices and strict job intake.
 
 from __future__ import annotations
 
@@ -372,7 +372,7 @@ class CloudPrintHandler(BaseHTTPRequestHandler):
             self.send_error_json(HTTPStatus.UNAUTHORIZED, "Invalid upload token")
             return
 
-        user_id = str(form.getfirst("user_id", "demo")).strip() or "demo"
+        user_id = str(form.getfirst("user_id", "user")).strip() or "user"
         device_id = str(form.getfirst("device_id", "")).strip()
         upload = form["file"] if "file" in form else None
         if not device_id:
@@ -394,20 +394,9 @@ class CloudPrintHandler(BaseHTTPRequestHandler):
                 (device_id,),
             ).fetchone()
             if not device:
-                # 当前阶段先保证小程序上传闭环，未绑定设备时自动创建占位云盒。
-                timestamp = now_ts()
-                db.execute(
-                    """
-                    INSERT INTO devices (
-                        device_id, device_name, device_token, printer_profile, printer_capabilities_json,
-                        status, created_at, last_seen_at
-                    ) VALUES (?, ?, ?, 'raw_passthrough', '{}', 'offline', ?, ?)
-                    """,
-                    (device_id, "默认云盒", secrets.token_urlsafe(24), timestamp, timestamp),
-                )
-                printer_profile = "raw_passthrough"
-            else:
-                printer_profile = device["printer_profile"]
+                self.send_error_json(HTTPStatus.NOT_FOUND, "Device not registered")
+                return
+            printer_profile = device["printer_profile"]
 
         job_id = uuid.uuid4().hex
         day = time.strftime("%Y%m%d")

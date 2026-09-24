@@ -1,5 +1,5 @@
 App({
   globalData: {
-    userId: 'demo'
+    userId: 'user'
   }
 })

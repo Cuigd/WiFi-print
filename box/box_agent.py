@@ -1,4 +1,4 @@
-# [Modification] Add MQTT-triggered jobs and lightweight IPP transport.
+# [Modification] Production cleanup: require an explicit printer transport.
 
 from __future__ import annotations
 
@@ -295,7 +295,7 @@ def print_file(config: dict, file_path: Path) -> tuple[bool, str]:
     cancel_stale_jobs(config)
     command_template = str(config.get("printer_command", "")).strip()
     if not command_template:
-        return True, "Dry-run mode: printer_command is not configured"
+        return False, "printer_command is required for CUPS transport"
 
     command_text = command_template.format(file=str(file_path))
     command = shlex.split(command_text, posix=False)
